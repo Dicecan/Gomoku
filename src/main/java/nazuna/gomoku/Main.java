@@ -5,8 +5,17 @@ import nazuna.gomoku.service.GomokuHttpServer;
 
 import java.awt.Desktop;
 import java.net.URI;
+import java.util.Random;
 
 public final class Main {
+
+    private static final String[] EASTER_EGGS = {
+        "🦇 「今夜は、まだ終わらないよ。」—— 属于夜晚的对局才刚刚开始。",
+        "🌙 「所谓熬夜，是为了追求未曾见过的自由与心动。」",
+        "🩸 算杀引擎已潜入夜色，落子无悔，彻夜对决！",
+        "🍺 「要不要来罐冰啤酒，下一盘直到天亮的五子棋？」",
+        "✨ 蝙蝠掠过棋盘，夜风正盛。祝今晚对弈尽兴！"
+    };
 
     private static final String BANNER = """
     ======================================================================
@@ -18,6 +27,7 @@ public final class Main {
                                                                      
                NAZUNA GOMOKU / RENJU PRO - GAME ENGINE               
     ======================================================================
+      * Name Origin  : 七草 ナズナ (Nanakusa Nazuna) ——《彻夜之歌》
       * Architecture : Java 17+ Core Engine & Modern Canvas WebUI
       * Algorithms   : PVS Search, Aspiration Windows, VCF & VCT Solvers
       * Rules        : International Renju (RIF) / Freestyle Gomoku
@@ -28,6 +38,9 @@ public final class Main {
 
     public static void main(String[] args) {
         System.out.println(BANNER);
+
+        String easterEgg = EASTER_EGGS[new Random().nextInt(EASTER_EGGS.length)];
+        System.out.println("  " + easterEgg + "\n");
 
         GameEngine gameEngine = new GameEngine();
         GomokuHttpServer server = new GomokuHttpServer(gameEngine);
